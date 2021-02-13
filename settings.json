@@ -28,6 +28,7 @@
   "terminal.integrated.fontSize": 15,
   "terminal.integrated.rendererType": "dom",
   // "workbench.colorTheme": "GitHub Light",
+  "workbench.editor.labelFormat": "short",
   "workbench.editor.showTabs": true,
   "workbench.iconTheme": "material-icon-theme",
   "[javascript]": {
