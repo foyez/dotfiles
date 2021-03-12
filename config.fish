@@ -1,3 +1,6 @@
+# override fish welcome message
+set fish_greeting
+
 # set the workspace path
 set -x GOPATH /media/foyez/CAD86EE7D86ED0ED/MyBackup/junior-senior-webdev/golang
 
