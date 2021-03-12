@@ -1,0 +1,67 @@
+{
+    "Class Component": {
+		"prefix": "rcc",
+		"body": [
+			"import React, { Component } from 'react';",
+			"",
+			"class ${1} extends Component {",
+			"  render() {",
+			"    return ${2}",
+			"  }",
+			"}",
+			"",
+			"export default ${1};"
+		],
+		"description": "Class Component"
+	},
+	"Functional Component": {
+		"prefix": "rc",
+		"body": [
+			"import React from 'react'",
+			"",
+			"export const ${TM_FILENAME_BASE} = () => <div>${TM_FILENAME_BASE}</div>",
+		],
+		"description": "Function Component"
+	},
+	"Functional Redux-Toolkit Component": {
+		"prefix": "rrtlk",
+		"body": [
+			"import React from 'react'",
+			"",
+			"import { useDispatch, useSelector } from 'react-redux'",
+			"",
+			"export const ${TM_FILENAME_BASE} = () => {",
+			"  const dispatch = useDispatch()",
+			"  const {} = useSelector()",
+			"",
+			"  return <div>${TM_FILENAME_BASE}</div>",
+			"}"
+		]
+	},
+	"Redux-Toolkit Slice": {
+		"prefix": "rtsl",
+		"body": [
+			"import { createSlice, PayloadAction } from '@reduxjs/toolkit'",
+			"",
+			"const initialState = {}",
+			"",
+			"const ${1} = createSlice({",
+			"  name: '${TM_FILENAME_BASE}',",
+			"  initialState,",
+			"  reducer: {",
+			"    ${TM_FILENAME_BASE}: {",
+			"      reducer() {},",
+			"      prepare() {",
+			"        return {}",
+			"      },",
+			"    },",
+			"    ${TM_FILENAME_BASE}Success: (state, {payload}) => {},",
+			"    ${TM_FILENAME_BASE}Failure: (state, {payload}) => {}",
+			"  }",
+			"})",
+			"",
+			"export const {} = ${1}.actions",
+			"export const ${TM_FILENAME_BASE}Reducer = ${1}.reducer"
+		]
+	}
+}

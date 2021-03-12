@@ -1,0 +1,16 @@
+{
+	"Styled Component Props": {
+		"prefix": ":scp",
+		"body": [
+			"${props => props.$1};"
+		],
+		"description": "Styled Component Props"
+	},
+	"Styled Component Theme Props": {
+		"prefix": ":tp",
+		"body": [
+			"${({theme}) => theme.$1};"
+		],
+		"description": "Theme Props"
+	}
+}
