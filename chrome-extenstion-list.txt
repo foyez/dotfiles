@@ -1,0 +1,11 @@
+1. 30 seconds of knowledge
+2. Apollo Client Devtools
+3. ColorZilla
+4. Fatkun Batch Download Image
+5. Grepper
+6. Instapaper
+7. JSONVue
+8. React Developer Tools
+9. Redux DevTools
+10. uBlock Origin
+11. Wappalyzer - Technology profile
