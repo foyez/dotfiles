@@ -4,7 +4,7 @@
 4. Fatkun Batch Download Image
 5. Grepper
 6. Instapaper
-7. JSONVue
+7. JSON Viewer - https://chrome.google.com/webstore/detail/json-viewer/aimiinbnnkboelefkjlenlgimcabobli
 8. React Developer Tools
 9. Redux DevTools
 10. uBlock Origin
