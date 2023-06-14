@@ -1,9 +1,10 @@
 {
   "editor.fontSize": 16,
   "editor.formatOnSave": true,
-  "editor.fontFamily": "Fira Code, Hack, Victor Mono, Fira Code, Consolas, 'Courier New', monospace",
+  "editor.fontFamily": "iosevka, 'OperatorMonoLig-Book', Fira Code, Hack, Victor Mono, Fira Code, Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
   "editor.minimap.enabled": false,
+  "editor.tabSize": 2,
   "editor.wordWrap": "on",
   "emmet.excludeLanguages": ["typescript", "javascript"],
   "emmet.includeLanguages": {
@@ -11,7 +12,7 @@
     "typescript": "typescriptreact"
   },
   "explorer.confirmDragAndDrop": false,
-  "files.autoSave": "onFocusChange",
+  // "files.autoSave": "onFocusChange",
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
@@ -24,30 +25,28 @@
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
   "prettier.semi": false,
-  "terminal.integrated.shell.linux": "/usr/bin/fish",
-  "terminal.integrated.fontSize": 15,
+  "terminal.integrated.fontFamily": "iosevka",
+  "terminal.integrated.fontSize": 14,
+	"terminal.integrated.defaultProfile.osx": "fish",
   "terminal.integrated.rendererType": "dom",
   // "workbench.colorTheme": "GitHub Light",
   "workbench.editor.labelFormat": "short",
   "workbench.editor.showTabs": true,
   "workbench.iconTheme": "material-icon-theme",
-  "[javascript]": {
-    "editor.tabSize": 2
-  },
-  "[typescriptreact]": {
-    "editor.tabSize": 2
-  },
-  "[typescript]": {
-    "editor.tabSize": 2
-  },
-  "[graphql]": {
-    "editor.tabSize": 2
-  },
+  "protoc": {
+		"options": ["--proto_path=proto"]
+	},
+	"go.testFlags": ["-v", "-count=1"],
   "[python]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 4
-  },
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  }
+		"editor.tabSize": 4,
+		"editor.formatOnType": true
+	},
+	"[go]": {
+		// "editor.suggestOnTriggerCharacters": false,
+		"editor.quickSuggestions": {
+			"other": "off",
+			"comments": "off",
+			"strings": "off"
+		}
+	}
 }
