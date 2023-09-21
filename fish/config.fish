@@ -7,13 +7,18 @@ if status is-interactive
     set -x GOPATH $HOME/Documents/projects/go
     # add the go bin path to be able to execute our programs
     set -x PATH $PATH /usr/local/go/bin $GOPATH/bin
+
+    # vs code path
+    alias code="open -a /Applications/Visual\ Studio\ Code.app"
+
+    # kubernetes
+    alias k="kubectl"
 end
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-eval /Users/foyez/opt/anaconda3/bin/conda "shell.fish" "hook" $argv |           source
+eval /Users/foyez/opt/anaconda3/bin/conda "shell.fish" "hook" $argv |      source
 # <<< conda initialize <<<
-
 
 # Bun
 set -Ux BUN_INSTALL "/Users/foyez/.bun"
