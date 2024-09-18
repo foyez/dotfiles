@@ -61,6 +61,7 @@ sudo vi ~/.zshrc # plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 ```sh
 # Install go: https://go.dev/dl/
+brew install go
 
 # Set go path
 # set the workspace path
