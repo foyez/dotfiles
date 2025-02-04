@@ -1,5 +1,6 @@
 # Mac Setup
 
+- [Reference](https://www.robinwieruch.de/mac-setup-web-development/)
 - **Enable tap to click and increase tracking speed**: `Settings > Trackpad`
 - **Adjust Display for more space**: `Settings > Display`
 - **Enable three finger drag**: navigate `Settings > Accessibility > Pointer Control > Trackpad Options`, enable `Enable dragging` and select `Three Finger Drag`
