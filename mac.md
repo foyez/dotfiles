@@ -46,16 +46,36 @@ brew install node
 - **Install zsh with oh-my-zsh**:
 
 ```sh
+# Install oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+# Update everything (e.g. plugins)
+omz update
+
+# Install Starship as your new terminal theme
+# https://starship.rs/
+brew install starship
+# Make it the default theme for Oh My ZSH
+echo 'eval "$(starship init zsh)"' >> ~/.zshrc
+
 # Install plugins
-# 1. auto suggestions
+# 1. completions
+git clone https://github.com/zsh-users/zsh-completions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
+# 2. auto suggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-# 2. Syntax highlight
+# 3. Syntax highlight
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # update configurations
-sudo vi ~/.zshrc # plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+sudo vi ~/.zshrc
+plugins=(
+  git
+  zsh-completions
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
+# reload terminal
+source ~/.zshrc
 ```
 
 - **Install Go**:
