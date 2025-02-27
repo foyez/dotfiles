@@ -6,39 +6,7 @@
 - **Enable three finger drag**: navigate `Settings > Accessibility > Pointer Control > Trackpad Options`, enable `Enable dragging` and select `Three Finger Drag`
 - **Launchpad on Cmd + Shift + Space**: `Settings > Keyboard Shortcut > Launchpad & Dock`
 - **Disable showing recent apps in Dock**: navigate `Settings > Desktop & Dock` and uncheck `Show suggested and recent apps in Dock`
-- **Setup ssh key**:
 
-```sh
-# Generate public/private rsa key pair
-ssh-keygen -t rsa -b 4096 -C "username@email.com"
-# ssh-keygen -t ed25519 -C "github"
-# follow instructions
-# use file name: github
-# use passphrase and store it somewhere secure
-
-
-# Copy public key
-pbcopy < ~/.ssh/id_rsa.pub
-```
-
-- **Git configuration**:
-
-```sh
-git config --global user.name "username"
-git config --global user.email "username@email.com"
-
-# set the default branch to main instead of master
-git config --global init.defaultBranch main
-
-# improved git log
-git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-git lg
-
-# print global git configuration:
-git config --list
-```
-
-- **Install VS Code**: https://code.visualstudio.com/docs/setup/mac
 - **Install Homebrew**:
 
 ```sh
@@ -83,6 +51,38 @@ brew install \
   nvm \
   yarn \
   pnpm
+```
+
+- **Setup ssh key**:
+
+```sh
+# Generate public/private rsa key pair
+ssh-keygen -t rsa -b 4096 -C "username@email.com"
+# ssh-keygen -t ed25519 -C "github"
+# follow instructions
+# use file name: github
+# use passphrase and store it somewhere secure
+
+
+# Copy public key
+pbcopy < ~/.ssh/id_rsa.pub
+```
+
+- **Git configuration**:
+
+```sh
+git config --global user.name "username"
+git config --global user.email "username@email.com"
+
+# set the default branch to main instead of master
+git config --global init.defaultBranch main
+
+# improved git log
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+git lg
+
+# print global git configuration:
+git config --list
 ```
 
 - **Install zsh with oh-my-zsh**:
