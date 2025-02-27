@@ -11,6 +11,11 @@
 ```sh
 # Generate public/private rsa key pair
 ssh-keygen -t rsa -b 4096 -C "username@email.com"
+# ssh-keygen -t ed25519 -C "github"
+# follow instructions
+# use file name: github
+# use passphrase and store it somewhere secure
+
 
 # Copy public key
 pbcopy < ~/.ssh/id_rsa.pub
@@ -22,8 +27,15 @@ pbcopy < ~/.ssh/id_rsa.pub
 git config --global user.name "username"
 git config --global user.email "username@email.com"
 
-# set default branch name of git initialization
-git config --global init.defaultBranch <branch_name>
+# set the default branch to main instead of master
+git config --global init.defaultBranch main
+
+# improved git log
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+git lg
+
+# print global git configuration:
+git config --list
 ```
 
 - **Install VS Code**: https://code.visualstudio.com/docs/setup/mac
@@ -35,12 +47,42 @@ git config --global init.defaultBranch <branch_name>
 # to add Homebrew to your PATH
 (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> $HOME/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
-```
 
-- **Install node**:
+# update everything in Homebrew
+brew update
 
-```sh
-brew install node
+# install GUI applications
+# Google Chrome (web development, web browsing)
+# Brave (web browsing, wallet)
+# Tor (secret web browsing)
+# Visual Studio Code (web development IDE)
+# Docker (containerization)
+# Slack (team messenger)
+# VLC (video player)
+# Figma (design)
+# ImageOptim (performance)
+# ProtonVPN (VPN)
+brew install --cask \
+  google-chrome  \
+  brave-browser \
+  tor \
+  visual-studio-code \
+  docker \
+  slack \
+  vlc \
+  figma \
+  imageoptim \
+  protonvpn
+
+# install terminal applications
+# git (version control)
+# nvm (node version manager)
+# pnpm (node package manager)
+brew install \
+  git \
+  nvm \
+  yarn \
+  pnpm
 ```
 
 - **Install zsh with oh-my-zsh**:
@@ -78,6 +120,43 @@ plugins=(
 source ~/.zshrc
 ```
 
+- **Install NVM for Node/npm - to install and manage multiple Node versions**:
+
+```sh
+# install nvm
+brew install nvm
+echo "source $(brew --prefix nvm)/nvm.sh" >> ~/.zshrc
+source ~/.zshrc
+
+# install the latest LTS version
+nvm install --lts
+
+# check node and npm versions
+node -v && npm -v
+
+# update npm to its latest version
+npm install -g npm@latest
+
+# set defaults for npm:
+npm set init-author-name="your name"
+npm set init-author-email="name@example.com"
+npm set init-author-url="example.com"
+
+# log in to npm
+npm adduser
+
+#  list all your Node.js installation
+nvm list
+
+# install a newer node.js version
+nvm install <version> --reinstall-packages-from=$(nvm current)
+nvm use <version>
+nvm alias default <version>
+
+#  list all globally installed packages
+npm list -g --depth=0
+```
+
 - **Install Go**:
 
 ```sh
@@ -91,4 +170,5 @@ export GOPATH=$HOME/go-workspace # change your path correctly!
 export PATH=$PATH:$GOPATH/bin
 
 # Create workspace
+mkdir go-workspace
 ```

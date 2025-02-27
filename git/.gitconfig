@@ -4,24 +4,10 @@
 [alias]
 	s = status -sb
 	st = status
-    sw = switch
-	co = checkout
-	ci = commit
-	br = branch
-	l = log --pretty=oneline --abbrev-commit
-	d = diff
-	dc = diff --cached
-	aa = add --all
-	find-merge = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
-	show-merge = "!sh -c 'merge=$(git find-merge $0 $1) && [ -n \"$merge\" ] && git show $merge'"
 [core]
 	excludesfile = ~/.gitexcludes
 	attributesFile = ~/.gitattributes
 	ignorecase = false
-	pager = diff-so-fancy | less -FXRi
-	precomposeUnicode = true
-	usebuiltinfsmonitor = true
-	untrackedcache = true
 [color]
 	ui = auto
 [push]
@@ -30,11 +16,6 @@
 	showPatch = true
 [rebase]
 	autostash = true
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [pull]
 	rebase = true
 [commit]
@@ -47,13 +28,9 @@
 	diffFilter = delta --color-only
 [init]
 	defaultBranch = main
-[include]
-	path = ~/.gitconfig.local
 [fetch]
 	prune = true
 	pruneTags = true
 	writeCommitGraph = true
-[rerere]
-	enabled = true
 
 # ref: https://github.com/torifat/dotfiles/blob/main/git/.gitconfig
