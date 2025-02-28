@@ -19,6 +19,8 @@ plugins=(
   zsh-syntax-highlighting
 )
 
+source $ZSH/oh-my-zsh.sh
+
 # get machine's ip address
 alias ip="ipconfig getifaddr en0"
 alias cls="clear"

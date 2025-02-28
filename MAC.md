@@ -19,6 +19,26 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # update everything in Homebrew
 brew update
 
+# GUI (macOS applications, e.g. Chrome, Visula studio code)
+brew install --cask <cask_name>
+brew uninstall --cask <cask_name>
+brew list --cask
+brew list --cask --versions
+
+# command-line tools (e.g. node, python, wget)
+brew install <formula>
+brew uninstall <formula>
+brew list
+brew list --formula
+brew list --formula --versions
+
+# check a specific package type
+brew info <package_name>
+
+# list availablity
+brew search --formula
+brew search node
+
 # install GUI applications
 # Google Chrome (web development, web browsing)
 # Brave (web browsing, wallet)
