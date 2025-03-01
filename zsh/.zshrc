@@ -30,7 +30,8 @@ alias valgrind='docker run -it --rm -v $PWD:/valgrind -w /valgrind --name valgri
 # git aliases
 alias gits="git status"
 alias gitd="git diff"
-alias gitl="git log --pretty=oneline --abbrev-commit"
+# alias gitl="git log --pretty=oneline --abbrev-commit"
+alias gitl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gita="git add ."
 alias gitc="cz commit"
 

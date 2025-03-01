@@ -70,7 +70,8 @@ brew install \
   git \
   nvm \
   yarn \
-  pnpm
+  pnpm \
+  go
 ```
 
 - **Setup ssh key**:
