@@ -231,6 +231,8 @@ ffmpeg -f x11grab -i $DISPLAY -framerate 2 \
 ffmpeg -i screencast.mp4 -vcodec libx265 -crf 28 final.mp4
 ```
 
+---
+
 **Options:**
 
 | Option                   | Meaning                                                                |
@@ -245,6 +247,8 @@ ffmpeg -i screencast.mp4 -vcodec libx265 -crf 28 final.mp4
 | `-pix_fmt yuv420p`       | Widely compatible pixel format                                         |
 | `screencast.mp4`         | Output file name                                                       |
 
+---
+
 **Optional Tweaks:**
 
 | Need                      | Change                                                     |
@@ -255,4 +259,34 @@ ffmpeg -i screencast.mp4 -vcodec libx265 -crf 28 final.mp4
 | Specific window or screen | Use `-video_size 1280x720 -i :0.0+X,Y` to target area      |
 | Specific output path      | Use `~/Desktop/screencast.mp4`                             |
 | Part of the screen        | Use `-vf "crop=1280:720:0:0"` where `crop=out_w:out_h:x:y` |
+
+---
+
+**To measure specific screen region on macOS (`Cmd + Shift + 4`)**
+
+1. Press **`Cmd + Shift + 4`**
+2. Your cursor becomes a crosshair ➕
+3. **Click and drag** to select an area
+4. While dragging, **look at the tooltip next to your cursor** – it shows:
+
+   * Start position (`x, y`)
+   * Width × Height of the selected area
+5. **Note down**:
+
+   * The starting point (`x`, `y`)
+   * The selected width and height
+
+💡 Example output:
+
+```
+x = 200, y = 150, width = 1280, height = 720
+```
+
+Then in FFmpeg, use:
+
+```bash
+-vf "crop=1280:720:200:150"
+```
+
+---
 
