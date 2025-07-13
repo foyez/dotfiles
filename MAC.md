@@ -193,3 +193,66 @@ export PATH=$PATH:$GOPATH/bin
 # Create workspace
 mkdir go-workspace
 ```
+
+- **Install FFmpeg (screen recording)**:
+
+```sh
+brew install ffmpeg
+
+# list available devices
+ffmpeg -f avfoundation -list_devices true -i ""
+
+# Output:
+# [AVFoundation indev @ 0x138704900] AVFoundation video devices:
+# [AVFoundation indev @ 0x138704900] [0] FaceTime HD Camera
+# [AVFoundation indev @ 0x138704900] [1] iPhone 15 Pro Max Camera
+# [AVFoundation indev @ 0x138704900] [2] iPhone 15 Pro Max Desk View Camera
+# [AVFoundation indev @ 0x138704900] [3] Capture screen 0
+# [AVFoundation indev @ 0x138704900] AVFoundation audio devices:
+# [AVFoundation indev @ 0x138704900] [0] iPhone 15 Pro Max Microphone
+# [AVFoundation indev @ 0x138704900] [1] MacBook Air Microphone
+
+# to start record at a reasonable file size without losing important visual fidelity (especially for presentations, coding, terminal sessions, or slides)
+# to record for a fixed time (e.g., 3 hours = 10800s): -t 10800
+# to add video and audio if needed (e.g., Capture srceen index 3, mic index 1): -i "3:1", -i "3:none", etc
+# the output video file will be saved in the current working directory as: screencast.mp4
+# in MAC:
+ffmpeg -f avfoundation -framerate 30 -i "3:none" \
+  -preset veryfast -vcodec libx264 -crf 26 \
+  -pix_fmt yuv420p screencast.mp4
+
+# in LINUX:
+ffmpeg -f x11grab -i $DISPLAY -framerate 2 \
+  -probesize 40M -threads 2 -preset veryfast \
+  -vcodec libx264 -crf 26 -pix_fmt yuv420p \
+  screencast.mp4
+
+# to compress further
+ffmpeg -i screencast.mp4 -vcodec libx265 -crf 28 final.mp4
+```
+
+**Options:**
+
+| Option                   | Meaning                                                                |
+| ------------------------ | ---------------------------------------------------------------------- |
+| `-f x11grab -i $DISPLAY` | Grabs the screen from your X11 display (Linux)                         |
+| `-framerate 2`           | Records at 2 fps (sufficient for presentations, code, slides)          |
+| `-probesize 40M`         | Improves input buffer handling, helpful for large desktops             |
+| `-threads 2`             | Uses 2 threads (you can increase if needed)                            |
+| `-preset veryfast`       | Balances speed and compression; `ultrafast` is faster but less compact |
+| `-vcodec libx264`        | Uses efficient H.264 video compression                                 |
+| `-crf 26`                | Controls quality and file size. (23 is better quality, 28 is smaller)  |
+| `-pix_fmt yuv420p`       | Widely compatible pixel format                                         |
+| `screencast.mp4`         | Output file name                                                       |
+
+**Optional Tweaks:**
+
+| Need                      | Change                                                     |
+| ------------------------- | ---------------------------------------------------------- |
+| Even smaller size         | Use `-vcodec libx265 -crf 28` (slower encoding)            |
+| Higher quality            | Use `-crf 23` or `-crf 20`                                 |
+| Full HD fast recording    | Use `-preset ultrafast` (less compression)                 |
+| Specific window or screen | Use `-video_size 1280x720 -i :0.0+X,Y` to target area      |
+| Specific output path      | Use `~/Desktop/screencast.mp4`                             |
+| Part of the screen        | Use `-vf "crop=1280:720:0:0"` where `crop=out_w:out_h:x:y` |
+
