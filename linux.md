@@ -107,6 +107,43 @@ update-desktop-database ~/.local/share/applications
 1. Neovim AppImage: https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
 2. Wezterm AppImage: https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
 
+- **Configure Wezterm terminal**
+
+Put the configuration: `~/.wezterm.lua` or `~/.config/wezterm.lua`
+
+```sh
+local wezterm = require("wezterm")
+
+return {
+  font = wezterm.font_with_fallback {
+    {
+      family = 'JetBrainsMono Nerd Font',
+      harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+    },
+    -- Add more fallback fonts here if needed
+  },
+  font_size = 13.0,
+
+  color_scheme = "Snazzy",
+
+  enable_tab_bar = false,
+  hide_tab_bar_if_only_one_tab = true,
+
+  window_decorations = "RESIZE",
+
+  window_padding = {
+    left = 2,
+    right = 2,
+    top = 2,
+    bottom = 2,
+  },
+
+  use_fancy_tab_bar = false,
+
+  window_close_confirmation = "NeverPrompt",
+}
+```
+
 - **Install clangd**
 
 ```sh
@@ -126,5 +163,8 @@ clangd --version
 mkdir -p ~/.local/share/fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
 unzip JetBrainsMono.zip -d ~/.local/share/fonts/
+# Update the font cache
 fc-cache -f -v
+# check installed fonts
+fc-list | grep -i "JetBrainsMono"
 ```
