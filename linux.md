@@ -106,3 +106,16 @@ update-desktop-database ~/.local/share/applications
 
 1. Neovim AppImage: https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
 2. Wezterm AppImage: https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
+
+- **Install clangd**
+
+```sh
+wget https://github.com/clangd/clangd/releases/download/20.1.8/clangd-linux-20.1.8.zip
+unzip clangd-linux-20.1.8.zip -d ~/apps/
+# add path in ~/.bashrc or ~/.zshrc
+export PATH="$HOME/apps/clangd_20.1.8/bin:$PATH"
+# Reload shell
+source ~/.bashrc # source ~/.zshrc
+# Now you can run from terminal:
+clangd --version
+```
