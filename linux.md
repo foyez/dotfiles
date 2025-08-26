@@ -109,7 +109,7 @@ update-desktop-database ~/.local/share/applications
 
 - **Configure Wezterm terminal**
 
-Put the configuration: `~/.wezterm.lua` or `~/.config/wezterm.lua`
+Put the configuration: `~/.wezterm.lua` or `~/.config/wezterm/wezterm.lua`
 
 ```sh
 local wezterm = require("wezterm")
