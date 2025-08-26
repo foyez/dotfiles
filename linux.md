@@ -67,7 +67,7 @@ plugins=(
 source ~/.zshrc
 ```
 
-- **Install apps as a non-root user**
+- **Install AppImage ("universal" Linux package) as a non-root user**
 
 ```bash
 ## 🛠 Step 1 — Download WezTerm AppImage
@@ -103,3 +103,6 @@ Categories=System;TerminalEmulator;
 # update desktop database:
 update-desktop-database ~/.local/share/applications
 ```
+
+1. Neovim AppImage: https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+2. Wezterm AppImage: https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
