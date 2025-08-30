@@ -149,12 +149,58 @@ return {
 ```sh
 wget https://github.com/clangd/clangd/releases/download/20.1.8/clangd-linux-20.1.8.zip
 unzip clangd-linux-20.1.8.zip -d ~/apps/
+
 # add path in ~/.bashrc or ~/.zshrc
 export PATH="$HOME/apps/clangd_20.1.8/bin:$PATH"
 # Reload shell
 source ~/.bashrc # source ~/.zshrc
+
+# ~/bin holds the executables
+ln -sfn ~/apps/clangd_20.1.8/bin/clangd ~/bin/clangd
+
+# add path in ~/.bashrc or ~/.zshrc
+export CLANGD_PATH="$HOME/clangd"
+export PATH="$HOME/bin:$CLANGD_PATH/bin:$PATH"
+# Reload shell
+source ~/.bashrc # source ~/.zshrc
+
 # Now you can run from terminal:
 clangd --version
+```
+
+- **Install go**
+
+```sh
+# create apps and bin dirs if not already exists
+mkdir -p ~/apps ~/bin
+
+#  fetch and extract go package
+wget https://go.dev/dl/go1.25.0.linux-amd64.tar.gz
+unzip go1.25.0.linux-amd64.tar.gz -d ~/apps/
+cd ~/apps
+mv go go-1.25.0
+
+# ~/bin holds the executables
+ln -sfn ~/apps/go-1.25.0/bin/go ~/bin/go
+ln -sfn ~/apps/go-1.25.0/bin/gofmt ~/bin/gofmt
+
+# add path in ~/.bashrc or ~/.zshrc
+export GOPATH="$HOME/go"
+export PATH="$HOME/bin:$GOPATH/bin:$PATH"
+# Reload shell
+source ~/.bashrc # source ~/.zshrc
+
+# Test go
+go version
+# go version go1.25.0 linux/amd64
+which go
+# /home/you/bin/go
+
+# install gopls
+go install golang.org/x/tools/gopls@latest
+which gopls
+# /home/you/go/bin/gopls
+
 ```
 
 - **Install fonts (user only)**
