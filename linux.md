@@ -168,6 +168,33 @@ source ~/.bashrc # source ~/.zshrc
 clangd --version
 ```
 
+- **Install nvm**
+
+```sh
+# Install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.6/install.sh | bash
+
+# Load nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# Add to .bashrc/.zshrc for persistence
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="$NVM_DIR/versions/node/$(nvm version)/bin:$PATH"
+source ~/.bashrc
+
+# Install a node version
+nvm install --lts   # e.g., installs Node 20.x
+nvm use --lts
+node -v
+npm -v
+
+# Install packages
+npm install -g typescript-language-server pyright
+```
+
 - **Install go**
 
 ```sh
