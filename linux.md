@@ -144,19 +144,18 @@ return {
 }
 ```
 
-- **Install clangd**
+- **Install precompiled binary (clangd, ripgrep, etc)**
+
+**ripgrep:** https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz
 
 ```sh
 wget https://github.com/clangd/clangd/releases/download/20.1.8/clangd-linux-20.1.8.zip
 unzip clangd-linux-20.1.8.zip -d ~/apps/
-
-# add path in ~/.bashrc or ~/.zshrc
-export PATH="$HOME/apps/clangd_20.1.8/bin:$PATH"
-# Reload shell
-source ~/.bashrc # source ~/.zshrc
+# tar -xvzf ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz -C ~/apps/
 
 # ~/bin holds the executables
 ln -sfn ~/apps/clangd_20.1.8/bin/clangd ~/bin/clangd
+# ln -sfn ~/apps/ripgrep-14.1.1-x86_64-unknown-linux-musl/rg ~/bin/rg
 
 # add path in ~/.bashrc or ~/.zshrc
 export CLANGD_PATH="$HOME/clangd"
