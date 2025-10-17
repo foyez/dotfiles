@@ -250,6 +250,18 @@ export PATH=$PATH:$GOPATH/bin
 mkdir go-workspace
 ```
 
+- **Install Rust**:
+
+```sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+echo '. "$HOME/.cargo/env"' >> ~/.zshrc
+source ~/.zshrc
+
+# check version
+rustc --version
+cargo --version
+```
+
 - **Install FFmpeg (screen recording)**:
 
 ```sh
