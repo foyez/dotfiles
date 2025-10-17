@@ -253,8 +253,11 @@ mkdir go-workspace
 - **Install Rust**:
 
 ```sh
+# install
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-echo '. "$HOME/.cargo/env"' >> ~/.zshrc
+
+# add path to: ~/.zshrc
+export PATH="$HOME/.cargo/bin:$PATH"
 source ~/.zshrc
 
 # check version
