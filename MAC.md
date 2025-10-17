@@ -132,7 +132,7 @@ git lg
 git config --list
 ```
 
--- **Install Node**:
+- **Install Node**:
 
 ```sh
 # Install fnm (Fast Node Manager)
@@ -175,7 +175,7 @@ npm adduser
 npm list -g --depth=0
 ```
 
--- **Install NVIM**:
+- **Install NVIM**:
 
 ```sh
 # Install boo
