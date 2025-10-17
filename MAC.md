@@ -7,6 +7,44 @@
 - **Launchpad on Cmd + Shift + Space**: `Settings > Keyboard Shortcut > Launchpad & Dock`
 - **Disable showing recent apps in Dock**: navigate `Settings > Desktop & Dock` and uncheck `Show suggested and recent apps in Dock`
 
+- **Setup ssh key**:
+
+```sh
+# Generate public/private rsa key pair
+ssh-keygen -t rsa -b 4096 -C "username@email.com"
+# ssh-keygen -t ed25519 -C "github"
+# follow instructions
+# use file name: github
+# use passphrase and store it somewhere secure
+
+
+# Copy public key
+pbcopy < ~/.ssh/id_rsa.pub
+```
+
+- **Install Apple’s command-line developer tools (CLT)**:
+
+```sh
+# Install Command Line Tools
+# If you don’t need full Xcode, just the developer tools (e.g., git, gcc, make, etc.)
+xcode-select --install
+
+# Verify installation
+xcode-select -p
+# /Library/Developer/CommandLineTools
+
+# To uninstall command line tools (if you install xcode manually)
+sudo rm -rf /Library/Developer/CommandLineTools
+
+# To fix broken configuration
+sudo xcode-select --reset
+
+# If you install Xcode form App store
+sudo xcode-select --switch /Applications/Xcode.app
+# Verify installation
+xcode-select -p
+```
+
 - **Install Homebrew**:
 
 ```sh
@@ -17,7 +55,10 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # update everything in Homebrew
-brew update
+brew update && brew upgrade
+
+# Cleanup unused packages
+brew cleanup
 
 # GUI (macOS applications, e.g. Chrome, Visula studio code)
 brew install --cask <cask_name>
@@ -74,21 +115,6 @@ brew install \
   go
 ```
 
-- **Setup ssh key**:
-
-```sh
-# Generate public/private rsa key pair
-ssh-keygen -t rsa -b 4096 -C "username@email.com"
-# ssh-keygen -t ed25519 -C "github"
-# follow instructions
-# use file name: github
-# use passphrase and store it somewhere secure
-
-
-# Copy public key
-pbcopy < ~/.ssh/id_rsa.pub
-```
-
 - **Git configuration**:
 
 ```sh
@@ -104,6 +130,73 @@ git lg
 
 # print global git configuration:
 git config --list
+```
+
+-- **Install Node**:
+
+```sh
+# Install fnm (Fast Node Manager)
+# It’s much faster than nvm
+brew install fnm
+
+# Add environment variable for fnm
+echo 'eval "$(fnm env --use-on-cd)"' >> ~/.zshrc
+source ~/.zshrc
+
+# Install the latest LTS (Long-Term Support) version of Node
+fnm install --lts
+fnm install 20.14.0
+
+# List all locally installed Node.js versions
+fnm list
+
+# Change Node.js version
+# Usage: fnm use [OPTIONS] [VERSION]
+
+# Set a version as the default version or get the current default version.
+# This is a shorthand for `fnm alias VERSION default`
+# Usage: fnm default [OPTIONS] [VERSION]
+
+# check node and npm versions
+node -v && npm -v
+
+# update npm to its latest version
+npm install -g npm@latest
+
+# set defaults for npm:
+npm set init-author-name="your name"
+npm set init-author-email="name@example.com"
+npm set init-author-url="example.com"
+
+# log in to npm
+npm adduser
+
+#  list all globally installed packages
+npm list -g --depth=0
+```
+
+-- **Install NVIM**:
+
+```sh
+# Install boo
+# Bob is a Neovim version manager — like nvm for Node or pyenv for Python
+# It allows: Install multiple versions, Switch between them, Keep them isolated
+brew install bob
+
+# Install nvim
+bob install stable
+bob install nightly
+bob install 0.11.4
+
+# Set a version as default
+bob use stable
+
+# Check which version is active
+bob list
+
+# Add nvim to your path
+echo 'export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
 ```
 
 - **Install zsh with oh-my-zsh**:
@@ -139,43 +232,6 @@ plugins=(
 )
 # reload terminal
 source ~/.zshrc
-```
-
-- **Install NVM for Node/npm - to install and manage multiple Node versions**:
-
-```sh
-# install nvm
-brew install nvm
-echo "source $(brew --prefix nvm)/nvm.sh" >> ~/.zshrc
-source ~/.zshrc
-
-# install the latest LTS version
-nvm install --lts
-
-# check node and npm versions
-node -v && npm -v
-
-# update npm to its latest version
-npm install -g npm@latest
-
-# set defaults for npm:
-npm set init-author-name="your name"
-npm set init-author-email="name@example.com"
-npm set init-author-url="example.com"
-
-# log in to npm
-npm adduser
-
-#  list all your Node.js installation
-nvm list
-
-# install a newer node.js version
-nvm install <version> --reinstall-packages-from=$(nvm current)
-nvm use <version>
-nvm alias default <version>
-
-#  list all globally installed packages
-npm list -g --depth=0
 ```
 
 - **Install Go**:
