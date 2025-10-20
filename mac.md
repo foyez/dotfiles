@@ -265,6 +265,55 @@ rustc --version
 cargo --version
 ```
 
+**Install Anaconda**:
+
+```sh
+# Install Miniconda
+brew install --cask miniconda
+
+# Initialize conda
+conda init "$(basename "${SHELL}")"
+
+# Stop automatically activation of base env
+conda config --set auto_activate false
+
+# Remove all unneccesary packages from base
+conda clean --all
+
+# Create, activate and deactivate environment
+conda create -n env_name python=3.9
+conda activate env_name
+conda deactivate
+
+# Check created env list
+conda env list
+
+# Remove a env
+conda remove --name env_name --all
+
+# Remove a package from an env
+conda remove --name env_name package_name
+
+# Install official packages
+conda install package_name
+
+# Install Open-source community packages
+conda install -c conda-forge package_name
+
+# To set conda-forge as a default channel
+conda config --add channels conda-forge
+conda config --set channel_priority strict
+
+# Show conda configurations
+conda config --show
+
+# To create virtual environment without anaconda
+python3 -m venv venv
+source venv/bin/activate
+deactivate
+pip install package_name
+```
+
 - **Install FFmpeg (screen recording)**:
 
 ```sh
