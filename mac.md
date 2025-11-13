@@ -138,6 +138,8 @@ git config --list
 # Install fnm (Fast Node Manager)
 # It’s much faster than nvm
 brew install fnm
+# or
+cargo install fnm
 
 # Add environment variable for fnm
 echo 'eval "$(fnm env --use-on-cd)"' >> ~/.zshrc
