@@ -15,8 +15,9 @@ set encoding=utf-8
 " ===============================
 " Editing Improvements
 " ===============================
-set tabstop=4          " Width of a tab character
-set shiftwidth=4       " Indentation width
+set tabstop=2          " A <Tab> is shown as 2 spaces
+set shiftwidth=2       " Indent/unindent uses 2 spaces
+set softtabstop=2      " <Tab> in insert mode = 2 spaces
 set expandtab          " Convert tabs to spaces
 set smartindent        " Auto-indent new lines
 set autoindent
