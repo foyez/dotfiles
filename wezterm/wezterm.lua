@@ -54,38 +54,45 @@ config.skip_close_confirmation_for_processes_named = {
 }
 
 --------------------------------------------------------------------------------
--- Keybindings & Neovim-style Leader
+-- Keybindings: High-Speed "Alt" Modifier Strategy (No Leader Needed)
 --------------------------------------------------------------------------------
-config.leader = { key = ' ', mods = 'NONE', timeout_milliseconds = 1000 }
 config.keys = {
-  -- Fullscreen / Maximize Toggle (Space -> f)
-  -- If you manually drag it around and need space for nvim, hit this to maximize
-  {
-    key = 'f',
-    mods = 'LEADER',
-    action = wezterm.action.ToggleFullScreen,
-  },
-
-  -- Split management (Space -> h/v)
+  -- Instantly split Side-by-Side (Alt + h)
   {
     key = 'h',
-    mods = 'LEADER',
+    mods = 'ALT',
     action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
   },
+
+  -- Instantly split Top-to-Bottom (Alt + v)
   {
     key = 'v',
-    mods = 'LEADER',
+    mods = 'ALT',
     action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
   },
 
-  -- Pane Zoom (Toggle Fullscreen a single split)
+  -- Instantly close the focused split pane (Alt + q)
+  {
+    key = 'q',
+    mods = 'ALT',
+    action = wezterm.action.CloseCurrentPane { confirm = true },
+  },
+
+  -- Instantly maximize just one split pane (Alt + z)
   {
     key = 'z',
-    mods = 'LEADER',
+    mods = 'ALT',
     action = wezterm.action.TogglePaneZoomState,
   },
 
-  -- Pane Navigation (Ctrl + hjkl)
+  -- Instantly make the whole WezTerm window Fullscreen (Alt + f)
+  {
+    key = 'f',
+    mods = 'ALT',
+    action = wezterm.action.ToggleFullScreen,
+  },
+
+  -- Jump between active split panes (Ctrl + h/j/k/l) - Fast Vim movement
   {
     key = 'h',
     mods = 'CTRL',
