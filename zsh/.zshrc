@@ -25,7 +25,8 @@ source $ZSH/oh-my-zsh.sh
 alias ip="ipconfig getifaddr en0"
 alias cls="clear"
 alias k="kubectl"
-alias valgrind='docker run -it --rm -v $PWD:/valgrind -w /valgrind --name valgrind valgrind:1.0'
+alias tf='terraform'
+alias md='glow -p=false -w 100'
 
 # git aliases
 alias gits="git status"
