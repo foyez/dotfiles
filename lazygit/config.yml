@@ -1,0 +1,12 @@
+os:
+  editCommand: "hx"          # so pressing 'e' on a file opens it in Helix
+  editCommandTemplate: "{{editor}} {{filename}}"
+
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never   # optional: nicer diffs if `delta` is installed
+
+gui:
+  showFileTree: true
+  nerdFontsVersion: "3"       # if terminal font supports nerd font icons
