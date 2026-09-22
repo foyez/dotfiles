@@ -285,22 +285,7 @@ That said, the ones worth burning into memory immediately:
 
 ---
 
-## 7. Duplicate a line and edit repeats at once (VS Code multi-cursor equivalent)
-
-Common pattern: copy a line, paste it below, then tweak a couple of repeated words on the new line — like `OK = "OK"` → `KO = "KO"`. Easiest way in Helix:
-
-1. `Y` — **yank the whole line** in one keystroke (capital Y = "yank line", shortcut for select-line + yank).
-2. `p` — paste it below. You're now sitting on the duplicate.
-3. `x` — select the new line, then `s` and type the word you want to replace (e.g. `OK`), Enter. This drops a cursor on **every** occurrence of that word on the line — both the bare word and the one inside quotes.
-4. `c` — change (deletes all selected matches and opens insert mode at every cursor at once), type the replacement (e.g. `KO`), `Esc`.
-
-One line, four keys: `Y p x s` *(type match)* `Enter c` *(type replacement)* `Esc`.
-
-General rule to remember: **select a scope → `s` + regex to fan out cursors on every match inside it → act on all of them at once (`c`/`d`/etc.)**. That combo is Helix's version of VS Code's "select all occurrences" — scope first, then multi-select, then edit.
-
----
-
-## 8. Checking errors and warnings (diagnostics)
+## 7. Checking errors and warnings (diagnostics)
 
 Helix shows diagnostics inline automatically (squiggly underlines + a message at end-of-line, controlled by `end-of-line-diagnostics` in your config), but for actually navigating them:
 
@@ -313,7 +298,7 @@ Helix shows diagnostics inline automatically (squiggly underlines + a message at
 
 ---
 
-## 9. Copying to the system clipboard
+## 8. Copying to the system clipboard
 
 By default Helix's `y`/`d`/`c` yank into its **internal register**, not your OS clipboard — so pasting into another app (Slack, browser, terminal outside Helix) needs the clipboard-specific commands:
 
@@ -326,7 +311,7 @@ Mnemonic: plain `y`/`p` = internal register (fast, same-buffer edits); `space-y`
 
 ---
 
-## 10. Debugging (DAP)
+## 9. Debugging (DAP)
 
 Helix has a built-in debug adapter client — no plugin needed, just an external debug adapter binary per language and a bit of config.
 
@@ -358,7 +343,7 @@ Helix ships built-in debugger configs for several languages already (check `hx -
 
 ---
 
-## 11. Filling the "plugin ecosystem" gap
+## 10. Filling the "plugin ecosystem" gap
 
 Helix deliberately has **no plugin system** like Neovim's Lua ecosystem — this is the main thing you'll miss coming from a heavily-plugin'd Vim setup. Compensate with external tools invoked via `:sh` or a terminal multiplexer:
 
@@ -368,7 +353,7 @@ Helix deliberately has **no plugin system** like Neovim's Lua ecosystem — this
 
 ---
 
-## 12. Recommended terminal workflow for devops work
+## 11. Recommended terminal workflow for devops work
 
 ```
 tmux
@@ -381,7 +366,7 @@ This mirrors VS Code's integrated terminal + source control panel, just external
 
 ---
 
-## 13. First-week checklist
+## 12. First-week checklist
 
 1. Run `hx --health` and install anything marked missing for Go/TS/Python/C++/YAML/Markdown.
 2. Copy the `config.toml` and `languages.toml` snippets above, adjust theme to taste (`:theme` + tab-complete to preview live).
@@ -393,13 +378,26 @@ This mirrors VS Code's integrated terminal + source control panel, just external
 ## 14. Important Keys
 
 ```js
+console.log("hi there")
+console.log("hi")
+
 // copy "hi there"
 // vim: vi"y
 // helix: mi"y
-console.log("hi there")
+
+// update "hi there"
+// vim: ci" + type
+// helix: mi"c + type
 
 // replace "hi" with "hi there"
-// vim: vi"p
-// helix: mi"R
-console.log("hi")
+// vim: copy "hi there" + vi"p
+// helix: copy "hi there" + mi"R
+
+// replace every "hi" with "hello" on the current line
+// vim: :s/hi/hello/g
+// helix: xs -> type "hi" -> enter c & "hello" ESC ,
+
+// replace every "hi" with "hello" on the entire line
+// vim: :%s/hi/hello/g
+// helix: xs -> type "hi" -> enter c & "hello" ESC ,
 ```
