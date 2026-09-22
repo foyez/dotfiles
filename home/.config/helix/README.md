@@ -389,3 +389,17 @@ This mirrors VS Code's integrated terminal + source control panel, just external
 4. Force yourself to use `mi(`, `s` for multi-select, and `space-a` for code actions for a few days instead of falling back to single-cursor editing — that's where Helix actually beats Vim/VS Code for refactor-heavy devops work (bulk-editing YAML manifests, renaming across a Go module, etc.).
 5. Practice `]d`/`[d` and `space-d` for diagnostics, and `space-y`/`space-p` for clipboard, until they're automatic.
 6. Set up the tmux/lazygit pane pattern from §12 so you're not missing VS Code's git panel.
+
+## 14. Important Keys
+
+```js
+// copy "hi there"
+// vim: vi"y
+// helix: mi"y
+console.log("hi there")
+
+// replace "hi" with "hi there"
+// vim: vi"p
+// helix: mi"R
+console.log("hi")
+```
