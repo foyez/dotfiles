@@ -258,13 +258,13 @@ That said, the ones worth burning into memory immediately:
 - `gd` — go to definition
 - `gr` — go to references
 - `gI` — go to implementation
+- `Ctrl-o / Ctrl-i` - jump back / jump forward
 - `space-a` — code action (quick fix, auto-import, extract var — same as VS Code's lightbulb)
 - `space-r` — rename symbol (renames across the whole workspace)
 - `space-k` — hover docs
 - `space-s` — document symbol picker (jump to any function/type in file)
 - `space-S` — workspace symbol picker (jump to any symbol in the whole project — replaces `Ctrl-T` in VS Code)
-- `space-d` — document diagnostics picker
-- `space-D` — workspace diagnostics picker
+- `space-d / space-D` -	buffer diagnostics / workspace diagnostics picker
 - `]d` / `[d` — next/prev diagnostic
 
 **File/project navigation**
@@ -273,6 +273,7 @@ That said, the ones worth burning into memory immediately:
 - `space-b` — buffer picker
 - `space-/` — global grep search across the project (ripgrep-backed, respects `.gitignore`)
 - `Ctrl-w` then `hjkl`/`v`/`s` — window/split management, exactly like Vim
+- `space-e / space-E` -	file explorer / reveal current file
 
 **Version control (built in, no plugin)**
 - `space-g` — git-related pickers (changed files, etc. — coverage varies by version, check `:health`)
