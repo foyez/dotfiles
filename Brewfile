@@ -1,6 +1,10 @@
 tap "hashicorp/tap"
+# Incredibly fast JavaScript runtime, bundler, test runner, and package manager
+brew "bun"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
+# Database migrations CLI tool
+brew "golang-migrate"
 # Post-modern modal text editor
 brew "helix"
 # Agent multiplexer that lives in your terminal
@@ -32,5 +36,7 @@ cask "tableplus"
 cask "visual-studio-code"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
+vscode "golang.go"
+vscode "humao.rest-client"
 go "github.com/go-delve/delve/cmd/dlv"
 go "golang.org/x/tools/gopls"
