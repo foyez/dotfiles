@@ -1,16 +1,18 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# go paths
-# set the workspace path
-export GOPATH=$HOME/Documents/projects/go
-# add the go bin path to be able to execute our programs
-export PATH=$PATH:$GOPATH/bin
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time Oh My Zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
@@ -21,26 +23,20 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# get machine's ip address
+# Vim-style command-line editing
+bindkey -v
+
+# Faster Esc response when switching to command mode
+export KEYTIMEOUT=10
+
+# User configuration
+export PATH="$PATH:$(go env GOPATH)/bin"
+
+# Aliases
 alias ip="ipconfig getifaddr en0"
 alias cls="clear"
 alias k="kubectl"
 alias tf='terraform'
-alias md='glow -p=false -w 100'
-
-# git aliases
-alias gits="git status"
-alias gitd="git diff"
-# alias gitl="git log --pretty=oneline --abbrev-commit"
-alias gitl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias gita="git add ."
-alias gitc="cz commit"
-
-# load zsh-completions
-autoload -U compinit && compinit
-
-# use nvm
-source /opt/homebrew/opt/nvm/nvm.sh
-
-# use starship theme (needs to be at the end)
-eval "$(starship init zsh)"
+alias claude-personal="CLAUDE_CONFIG_DIR=~/.claude-personal claude"
+alias claude-chayon="CLAUDE_CONFIG_DIR=~/.claude-chayon claude"
+alias claude-work="CLAUDE_CONFIG_DIR=~/.claude-work claude"
