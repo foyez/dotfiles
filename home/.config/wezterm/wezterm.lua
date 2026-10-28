@@ -1,7 +1,16 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
-config.color_scheme = "Snazzy" -- "rose-pine-moon"
+local themes = {
+	"Catppuccin Mocha",
+	"Tokyo Night",
+	"Kanagawa (Gogh)",
+	"Gruvbox Dark",
+	"rose-pine-moon",
+	"Snazzy",
+}
+
+config.color_scheme = themes[1]
 -- config.font = wezterm.font("Hack Nerd Font")
 config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font_size = 15.0
@@ -11,8 +20,16 @@ config.macos_window_background_blur = 50
 config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "RESIZE"
 
-config.initial_cols = 140  -- Standard columns (fits code + sidebar comfortably)
-config.initial_rows = 38   -- Vertical height in text lines
+config.initial_cols = 140 -- Standard columns (fits code + sidebar comfortably)
+config.initial_rows = 38 -- Vertical height in text lines
+
+-- config.window_padding = {
+--   left = 2,
+--   right = 2,
+--   top = 2,
+--   bottom = 2,
+-- }
+
 -- Dim unfocused windows so the focused one is obvious at a glance.
 local UNFOCUSED_FOREGROUND_TEXT_HSB = { hue = 1.0, saturation = 0.25, brightness = 0.45 }
 local UNFOCUSED_WINDOW_BACKGROUND_OPACITY = 0.62
@@ -48,29 +65,29 @@ wezterm.on("window-focus-changed", function(window)
 end)
 
 config.keys = {
-  -- Split panes vertically and horizontally using Alt + v / Alt + -
-  {
-    key = 'v',
-    mods = 'ALT',
-    action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
-  },
-  {
-    key = '-',
-    mods = 'ALT',
-    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
-  },
+	-- Split panes vertically and horizontally using Alt + v / Alt + h
+	{
+		key = "h",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		key = "v",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
 
-  -- Switch between panes using Alt + Arrow Keys
-  { key = 'LeftArrow',  mods = 'ALT', action = wezterm.action.ActivatePaneDirection 'Left' },
-  { key = 'RightArrow', mods = 'ALT', action = wezterm.action.ActivatePaneDirection 'Right' },
-  { key = 'UpArrow',    mods = 'ALT', action = wezterm.action.ActivatePaneDirection 'Up' },
-  { key = 'DownArrow',  mods = 'ALT', action = wezterm.action.ActivatePaneDirection 'Down' },
+	-- Switch between panes using Alt + Arrow Keys
+	{ key = "LeftArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Left") },
+	{ key = "RightArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Right") },
+	{ key = "UpArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Up") },
+	{ key = "DownArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Down") },
 
-  -- Resize panes using Alt + Shift + Arrow Keys
-  { key = 'LeftArrow',  mods = 'ALT|SHIFT', action = wezterm.action.AdjustPaneSize { 'Left', 5 } },
-  { key = 'RightArrow', mods = 'ALT|SHIFT', action = wezterm.action.AdjustPaneSize { 'Right', 5 } },
-  { key = 'UpArrow',    mods = 'ALT|SHIFT', action = wezterm.action.AdjustPaneSize { 'Up', 5 } },
-  { key = 'DownArrow',  mods = 'ALT|SHIFT', action = wezterm.action.AdjustPaneSize { 'Down', 5 } },
+	-- Resize panes using Alt + Shift + Arrow Keys
+	{ key = "LeftArrow", mods = "ALT|SHIFT", action = wezterm.action.AdjustPaneSize({ "Left", 5 }) },
+	{ key = "RightArrow", mods = "ALT|SHIFT", action = wezterm.action.AdjustPaneSize({ "Right", 5 }) },
+	{ key = "UpArrow", mods = "ALT|SHIFT", action = wezterm.action.AdjustPaneSize({ "Up", 5 }) },
+	{ key = "DownArrow", mods = "ALT|SHIFT", action = wezterm.action.AdjustPaneSize({ "Down", 5 }) },
 }
 
 return config
