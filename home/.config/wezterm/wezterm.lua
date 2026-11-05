@@ -53,7 +53,10 @@ end
 -- Dim unfocused windows so the focused one is obvious at a glance
 --------------------------------------------------------------------------------
 
-local UNFOCUSED_FOREGROUND_TEXT_HSB = { hue = 1.0, saturation = 0.25, brightness = 0.45 }
+-- Inactive split panes within a window (built-in; the default is very subtle).
+config.inactive_pane_hsb = { saturation = 0.6, brightness = 0.55 }
+
+local UNFOCUSED_FOREGROUND_TEXT_HSB = { hue = 1.0, saturation = 0.25, brightness = 0.6 }
 local UNFOCUSED_WINDOW_BACKGROUND_OPACITY = 0.62
 
 -- get_config_overrides() returns a copy, so compare fields instead of identity.
