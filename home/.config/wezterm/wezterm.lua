@@ -6,16 +6,70 @@ local config = wezterm.config_builder()
 -- Appearance
 --------------------------------------------------------------------------------
 
-local themes = {
-	"Catppuccin Mocha",
-	"Tokyo Night",
-	"Kanagawa (Gogh)",
-	"Gruvbox Dark",
-	"rose-pine-moon",
-	"Snazzy",
-}
+-- Used until a theme is picked with Ctrl+A, t.
+local DEFAULT_THEME = "Catppuccin Mocha"
 
-config.color_scheme = themes[1]
+local all_schemes = wezterm.color.get_builtin_schemes()
+
+local theme_names = {}
+for name in pairs(all_schemes) do
+	table.insert(theme_names, name)
+end
+table.sort(theme_names)
+
+-- The picked theme is saved here so it survives restarts.
+local THEME_FILE = wezterm.config_dir .. "/.theme"
+
+local function read_saved_theme()
+	local f = io.open(THEME_FILE, "r")
+	if not f then
+		return nil
+	end
+	local name = f:read("*l")
+	f:close()
+	return name
+end
+
+local saved_theme = read_saved_theme()
+if saved_theme and all_schemes[saved_theme] then
+	config.color_scheme = saved_theme
+else
+	config.color_scheme = DEFAULT_THEME
+end
+
+-- Save the theme and reload so every window (and the hint bar colors) pick it up.
+local function save_theme(name)
+	local f = io.open(THEME_FILE, "w")
+	if not f then
+		wezterm.log_error("Could not write " .. THEME_FILE)
+		return
+	end
+	f:write(name)
+	f:close()
+	wezterm.reload_configuration()
+end
+
+-- Fuzzy-search all built-in themes; the current one is marked with a dot.
+local theme_picker = wezterm.action_callback(function(window, pane)
+	local choices = {}
+	for _, name in ipairs(theme_names) do
+		local mark = (name == config.color_scheme) and "● " or "  "
+		table.insert(choices, { id = name, label = mark .. name })
+	end
+	window:perform_action(
+		act.InputSelector({
+			title = "Theme",
+			choices = choices,
+			fuzzy = true,
+			action = wezterm.action_callback(function(_, _, id)
+				if id then
+					save_theme(id)
+				end
+			end),
+		}),
+		pane
+	)
+end)
 
 -- config.font = wezterm.font("Hack Nerd Font")
 config.font = wezterm.font("JetBrainsMono Nerd Font")
@@ -97,7 +151,7 @@ local PREFIX_TABLE = "prefix"
 local MOVE_TABLE = "move"
 
 -- Hint bar colors come from the active color scheme, so they follow theme changes.
-local scheme = wezterm.color.get_builtin_schemes()[config.color_scheme] or {}
+local scheme = all_schemes[config.color_scheme] or {}
 local ansi = scheme.ansi or {}
 local colors = {
 	bg = scheme.background or "#1e1e2e",
@@ -117,6 +171,7 @@ local modes = {
 			{ "z", "zoom" },
 			{ "x", "close" },
 			{ "[/]", "snap" },
+			{ "t", "theme" },
 			{ "hjkl", "move" },
 		},
 	},
@@ -209,6 +264,7 @@ config.key_tables = {
 		{ key = "x", action = act.CloseCurrentPane({ confirm = true }) },
 		{ key = "[", action = snap_action("left") },
 		{ key = "]", action = snap_action("right") },
+		{ key = "t", action = theme_picker },
 		{ key = "h", action = move_then_enter_move_mode("Left") },
 		{ key = "j", action = move_then_enter_move_mode("Down") },
 		{ key = "k", action = move_then_enter_move_mode("Up") },
@@ -238,22 +294,6 @@ config.key_tables = {
 config.keys = {
 	-- Prefix
 	{ key = "a", mods = "CTRL", action = enter_mode(PREFIX_TABLE, true) },
-
-	-- Split: Ctrl+Shift+H stacks panes, Ctrl+Shift+V puts them side by side
-	{ key = "h", mods = "CTRL|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	{ key = "v", mods = "CTRL|SHIFT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-
-	-- Move between panes: Alt + arrows
-	{ key = "LeftArrow", mods = "ALT", action = act.ActivatePaneDirection("Left") },
-	{ key = "RightArrow", mods = "ALT", action = act.ActivatePaneDirection("Right") },
-	{ key = "UpArrow", mods = "ALT", action = act.ActivatePaneDirection("Up") },
-	{ key = "DownArrow", mods = "ALT", action = act.ActivatePaneDirection("Down") },
-
-	-- Resize panes: Alt + Shift + arrows
-	{ key = "LeftArrow", mods = "ALT|SHIFT", action = act.AdjustPaneSize({ "Left", 5 }) },
-	{ key = "RightArrow", mods = "ALT|SHIFT", action = act.AdjustPaneSize({ "Right", 5 }) },
-	{ key = "UpArrow", mods = "ALT|SHIFT", action = act.AdjustPaneSize({ "Up", 5 }) },
-	{ key = "DownArrow", mods = "ALT|SHIFT", action = act.AdjustPaneSize({ "Down", 5 }) },
 }
 
 return config
